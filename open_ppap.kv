@@ -1,0 +1,77 @@
+<DrawerClickableItem@MDNavigationDrawerItem>
+
+
+<PPAPNavigationDrawer>
+
+    MDList:
+        MDNavigationDrawerHeader:
+            title: "Product Part Approval Process"
+            text: "PPAP Contents"
+            spacing: "4dp"
+            padding: "12dp", 0, 0, "56dp"
+        
+        MDNavigationDrawerDivider:
+
+        OneLineListItem:
+            text: "Screen 1"
+            on_press:
+                root.ppap_drawer.set_state("close")
+                root.screen_manager.current = "scr 1"
+
+        DrawerClickableItem:
+            adaptive_height: True
+            adaptive_width: True
+            icon: "information"
+            text: "Screen 2"
+            on_press:
+                root.ppap_drawer.set_state("close")
+                root.screen_manager.current = "scr 2"
+
+MDScreen:
+
+    MDTopAppBar:
+        pos_hint: {"top": 1}
+        elevation: 4
+        title: "MDNavigationDrawer"
+        left_action_items: [["menu", lambda x: ppap_drawer.set_state("open")]]
+
+    MDNavigationLayout:
+
+        MDScreenManager:
+            id: screen_manager
+
+            MDScreen:
+                name: "scr 1"
+
+                MDLabel:
+                    text: "Screen 1"
+                    halign: "center"
+
+            MDScreen:
+                name: "scr 2"
+
+                MDLabel:
+                    text: "Screen 2"
+                    halign: "center"
+
+            MDScreen:
+                name: "scr 3"
+
+                MDLabel:
+                    text: "Screen 3"
+                    halign: "center"
+
+            MDScreen:
+                name: "scr 4"
+
+                MDLabel:
+                    text: "Screen 4"
+                    halign: "center"
+
+        MDNavigationDrawer:
+            id: ppap_drawer
+            radius: (0, 32, 16, 0)
+
+            PPAPNavigationDrawer:
+                screen_manager: screen_manager
+                nav_drawer: ppap_drawer
